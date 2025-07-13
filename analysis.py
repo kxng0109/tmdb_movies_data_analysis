@@ -99,26 +99,28 @@ print(f"The movie with the highest revenue is \"{max_revenue_title}\" with a rev
 
 # Average rating for each genre
 average_rating_per_genre = df.groupby("main_genre")["vote_average"].mean()
-print("The average rating per genre are:")
-print(average_rating_per_genre)
+print("The average rating per genre and their mean values:")
+print(average_rating_per_genre.to_string(header=False))
 
 # Average rating for each language
 average_rating_per_language = df.groupby("original_language")["vote_average"].mean()
-print("The average rating per language are:")
-print(average_rating_per_language)
+print("\nThe average rating per language and their mean values:")
+print(average_rating_per_language.to_string(header=False))
 
 # Average popularity per genre and language
 average_popularity_per_genre = df.groupby("main_genre")["popularity"].mean()
 average_popularity_per_language = df.groupby("main_genre")["popularity"].mean()
-print("\nThe average popularity per language are:")
-print(average_popularity_per_language)
-print("\nThe average popularity per genre are:")
-print(average_popularity_per_genre)
+print("\nThe average popularity per language and their mean values:")
+print(average_popularity_per_language.to_string(header=False))
+
+print("\nThe average popularity per genre and their mean values:")
+print(average_popularity_per_genre.to_string(header=False))
 
 # Trend in ratings and runtimes over the years
-print("\nBelow is the trend in runtime and ratings respectively, over the years:")
-print(df.groupby("release_year")["runtime"].mean())
-print(df.groupby("release_year")["vote_average"].mean())
+print("\nBelow is the trend in runtime and ratings respectively, over the years with their mean values:")
+print(df.groupby("release_year")["runtime"].mean().to_string(header=False))
+print("\n")
+print(df.groupby("release_year")["vote_average"].mean().to_string(header=False))
 
 # Correlation between budget and revenue
 budget_revenue_correlation = df["budget"].corr(df["revenue"])
@@ -132,28 +134,28 @@ print(f"\nWe can see that the top rated movie \"{highest_rating_name}\" has an a
 
 # Top 10 highest rated movies
 top_ten_highest_rated = top_n_movies("vote_average")
-print("The top 10 highest rated movies are:")
-print(top_ten_highest_rated)
+print("Top 10 highest rated movies:")
+print(top_ten_highest_rated.to_string(header=False))
 
 # Top 10 longest movies
 top_ten_longest = top_n_movies("runtime")
-print("\nThe top 10 movies with the longest runtimes are:")
-print(top_ten_longest)
+print("\nTop 10 movies with the longest runtimes:")
+print(top_ten_longest.to_string(header=False))
 
 # Top 10 movies with the highest revenue
 top_ten_highest_revenue = top_n_movies("revenue")
-print("\nThe top 10 movies with highest revenues are:")
-print(top_ten_highest_revenue)
+print("\nTop 10 movies with highest revenues:")
+print(top_ten_highest_revenue.to_string(header=False))
 
 # Top 10 movies with the highest budget
 top_ten_highest_budget = top_n_movies("budget")
-print("\nThe top 10 movies with highest budgets are:")
-print(top_ten_highest_budget)
+print("\nTop 10 movies with highest budgets:")
+print(top_ten_highest_budget.to_string(header=False))
 
 # Top recurring production companies
 most_recurring_companies = df["main_company"].value_counts()
 most_recurring_company = most_recurring_companies.idxmax()
-print(f"The most recurring company is {most_recurring_company}.")
+print(f"\nThe most recurring company is {most_recurring_company}.")
 
 # Most successful genre financially
 most_successful_genre = df.groupby("main_genre")["revenue"].median().idxmax()
